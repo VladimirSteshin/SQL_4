@@ -28,6 +28,9 @@ insert into tracks_collections (track_id, collection_id)
 values (1, 1), (1, 6), (1, 7), (4, 3), (4, 4), (4, 6), (4, 8), (5, 3), (5, 7), (6, 4), (6, 6), (6, 8), (9, 2), (10, 2), (10, 5),
 (11, 5), (12, 1), (12, 6), (12, 7), (13, 3), (13, 6), (14, 1), (15, 8), (17, 1), (17, 5);
 
+
+-- NEEDED TO REFRESH THE DB
+--
 --delete from artists_albums;
 --delete from genres_artists;
 --delete from tracks_collections;

@@ -1,22 +1,3 @@
-select album_name, released from album
-where released = 2018;
-
-select track_name, round(duration::decimal / 60, 2) from track
-order by duration desc
-limit 1;
-
-select track_name, round(duration::decimal / 60, 2) from track
-where round(duration::decimal / 60, 2) >= 3.5;
-
-select collection_name from collection
-where released between 2018 and 2020;
-
-select artist_name from artist
-where artist_name not like '% %';
-
-select track_name from track
-where lower(track_name) like '%my%' or track_name like '%мой%';
-
 select genre_name, count(*) from genre g
 join genres_artists ga on g.id = ga.genre_id
 group by genre_name
@@ -63,3 +44,12 @@ join artists_albums aa on a.id = aa.artist_id
 join album al on aa.album_id = al.id
 join track t on al.id = t.track_album
 where duration = (select min(duration) from track);
+
+select album_name from album a
+join track t on a.id = t.track_album
+group by album_name
+having count(*) = (
+	select min(q) from
+	(select album_name, count(*) q from album a
+	join track t on a.id = t.track_album
+	group by album_name) as nested);
